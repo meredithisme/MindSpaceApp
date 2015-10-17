@@ -1,15 +1,20 @@
 console.log("Sanity Check: JS is working!");
 
 $(document).ready(function(){
+  
 
-
-
-  //object constructor to create new post objects 
+ //object constructor to create new post objects 
   function Post(body) {
       this.body = body;
       this.createdAt = new Date();
   }
+
+  $(document).on('click', 'btn.close', function(e) {
+    e.preventDefault();
+
+  });
   
+
   function commentSubmitHandler() {
     $('#newComment').submit('click', function(e) {
       e.preventDefault();
@@ -17,7 +22,7 @@ $(document).ready(function(){
       // var addComment = "<div id='comment'>" + postComment + "</div>";
       $('#finalpush').prepend(postComment + '<br>');
       $('#postComment').val('');
-          
+      
     });
 
   }
@@ -62,9 +67,6 @@ $(document).ready(function(){
         }
 
         commentSubmitHandler();
-
-
-
 
 
      });
