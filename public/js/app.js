@@ -1,7 +1,7 @@
 console.log("Sanity Check: JS is working!");
 
 $(document).ready(function(){
-  
+
 
  //object constructor to create new post objects 
   function Post(body) {
@@ -9,11 +9,11 @@ $(document).ready(function(){
       this.createdAt = new Date();
   }
 
-  $(document).on('click', 'btn.close', function(e) {
+  $(document).on('click', '#submitNewPost', function(e) {
     e.preventDefault();
 
+   
   });
-  
 
   function commentSubmitHandler() {
     $('#newComment').submit('click', function(e) {

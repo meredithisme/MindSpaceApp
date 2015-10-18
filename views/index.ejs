@@ -72,14 +72,17 @@
             <div class="col-sm-8 col-sm-offset-2">
               <form id="new-blog-post"> <!-- action="/posts" -->
                 <div class="form-group" id="submitNewPost">
-                  <textarea name="" id="postContent" cols="30" rows="1" class="form-control"></textarea>
+                  <input type="text" name="postContent" id="postContent" cols="30" rows="1" class="form-control"></input>
                 </div>
                 <div class="text-right">
-                  <button type="submit" class="btn btn-primary btn-sm" class="close">Add Insight</button>                        
+                  <button type="submit" id="submitBtn" class="btn btn-primary btn-sm">Add Insight</button>                       
                 </div>
-              </form>
+              </form> <!-- === END POST FORM === -->
+
+                   
             </div>
         </div>
+
                
          <!-- ===== POSTS & COMMENTS ===== -->   
         </div>   
