@@ -18,10 +18,11 @@ $(document).ready(function(){
 
       .done(function(contents) {
          console.log(contents);
+         postCount++;
          //prepend contents to list
-         $('ul').prepend('<li>' + contents.contents + '</li>');
+         $('ul').prepend('Thought' + postCount + '<li>' + contents.contents + '</li>');
          // clear form contents
-         $('#newPost')[0].prepend.reset();
+         $('#newPost')[0].reset();
          // give focus back to postContent
          $('#submitPost').focus();
        });
