@@ -16,21 +16,45 @@ $(document).ready(function(){
         console.log('the response is ', response);
       })
 
+/*    <li id="<%= contents[i]._id %>">
+        <div class='thought'>Thought <%= i+1 %>
+        </div> <br> <%= contents[i].contents %>
+        <div class="pull-right">
+            <button class="btn" id="deletePost"><i class="fa fa-minus-square-o"></i></button>
+        </div>
+      </li>*/
       .done(function(contents) {
-         console.log(contents);
-         postCount++;
-         //prepend contents to list
-         $('ul').prepend('Thought' + postCount + '<li>' + contents.contents + '</li>');
+         var title = $('li:first').text();
+         var number = title[8]+ title[9];
+         //prepend title & contents to list
+         $('ul').prepend('<li id=\"'+ contents._id + ' \">' + '<div class="thought">'+ 'Thought ' + (parseInt(number)+1) + "</div> <br>" + contents.contents + "<div class='pull-right'>'<button class='btn' id='deletePost'><i class='fa fa-minus-square-o></i></button></div>" + '</li>');
          // clear form contents
          $('#newPost')[0].reset();
          // give focus back to postContent
          $('#submitPost').focus();
        });
-    });
- 
-
-   
+    });  
   });
+
+  // Delete Single Posts Unique Id 
+
+  $(document).on('click', '#deletePost', function(e) {
+    e.preventDefault();
+    console.log("delete icon was clicked!");
+
+    var PostId = $(this).closest('li').attr('id');
+    console.log('The post id is ', PostId);
+    // post to server
+
+    $.ajax({
+      url: "/api/posts/" + PostId,
+      type: "DELETE",
+    }).done(function(contents) {
+      $('#' + PostId).remove();
+    });
+  });
+  // End Delete Post
+
 
   function commentSubmitHandler() {
     $('#newComment').submit('click', function(e) {
@@ -57,14 +81,14 @@ $(document).ready(function(){
         var postContent = $('#postContent').val();
         var blogPost = "<p id='posts'>"  + postContent + "</p>";
 
-        // grabs current date, month, year
-        var postDate = new Date();
-        var postDay = postDate.getDay();
-        var postYear = postDate.getFullYear();
-        var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
-        // creates month abbreviations instead of just numbers
-        var postMonth = months[postDate.getMonth()];
-        var blogDate = postMonth + ' ' + postDay + ', ' + postYear + '<br>' + '<br>';
+        // // grabs current date, month, year
+        // var postDate = new Date();
+        // var postDay = postDate.getDay();
+        // var postYear = postDate.getFullYear();
+        // var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+        // // creates month abbreviations instead of just numbers
+        // var postMonth = months[postDate.getMonth()];
+        // var blogDate = postMonth + ' ' + postDay + ', ' + postYear + '<br>' + '<br>';
 
 
         // makes sure the comments post to the correct individial post

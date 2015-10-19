@@ -24,6 +24,18 @@ body {
       animation: fadeIn 3.3s forwards;  
 }
 
+button.btn {
+  background-color: #fff;
+  box-shadow: none;
+  border: none;
+}
+
+button.btn:a {
+  background-color: #fff;
+  box-shadow: none;
+  border: none;
+}
+
 .video video {
     width: 100% !important;
     border: none;
@@ -67,6 +79,14 @@ h1, h2, h3, h4 {
 li {
   list-style: none;
   min-height: 100px;
+}
+
+.thought {
+  font-family: 'Fira Sans', 'Lato', sans-serif;
+  font-size: 24px;
+  font-weight: 300;
+  font-style: italic;
+  margin-top: 20px;
 }
 
 #dates {

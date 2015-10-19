@@ -23,6 +23,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get("/", function (req, res) {
 	db.Post.find().exec(function(err, response) {
 	res.render('index', { contents: response });
+	console.log(response);
 	});
 });
 
@@ -47,7 +48,11 @@ app.get("/api/posts/:id", function (req, res) {
 	});
 });
 
-
+app.delete("/api/posts/:id", function (req, res) {
+	db.Post.remove({_id: req.params.id}, function(err, post) {
+	res.status(200).json(post);
+	});
+});
 
 
 
