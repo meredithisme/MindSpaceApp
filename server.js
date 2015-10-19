@@ -5,6 +5,9 @@ var express = require("express"),
     app = express(),
     path = require("path"),
     bodyParser = require("body-parser");
+    var db = require('./models');
+    var mongoose = require('mongoose');
+    
 
 // CONFIG //
 // set ejs as view engine
@@ -16,23 +19,33 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 
-var db = require('./models');
 
 app.get("/", function (req, res) {
-// render index.html and send with foods data filled 
+	db.Post.find().exec(function(err, response) {
+	res.render('index', { contents: response });
+	});
+});
 
-res.render('index');
-
+app.get("/api/posts", function (req, res) {
+	db.Post.find().exec(function(err, response) {
+	res.json(response);
+	});
 });
 
 
+app.post("/api/posts", function (req, res) {
+	var contents = req.body.postContent; 
+	db.Post.create({contents: contents}, function(error, post) {
+		console.log('post saved: ', post);
+	    res.json(post);
+	});
+});
 
-
-
-
-
-
-
+app.get("/api/posts/:id", function (req, res) {
+	db.Post.find({_id: req.params.id}).exec(function(err, response) {
+	res.json(response);
+	});
+});
 
 
 

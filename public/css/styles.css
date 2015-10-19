@@ -64,6 +64,9 @@ h1, h2, h3, h4 {
 
 }
 
+li {
+  list-style: none;
+}
 
 #dates {
   float: right;
@@ -73,7 +76,7 @@ h1, h2, h3, h4 {
   min-height: 200px;
 }
 
-textarea#postContent.form-control {
+input#postContent.form-control {
   border-top: none;
   border-left: none;
   border-right: none;

@@ -9,8 +9,24 @@ $(document).ready(function(){
       this.createdAt = new Date();
   }
 
-  $(document).on('click', '#submitNewPost', function(e) {
+
+  $('#newPost').on('submit', function(e) {
     e.preventDefault();
+      $.post('/api/posts', $('#newPost').serialize(),function(response) {
+        console.log('the response is ', response);
+      })
+
+      .done(function(contents) {
+         console.log(contents);
+         //prepend contents to list
+         $('ul').prepend('<li>' + contents.contents + '</li>');
+         // clear form contents
+         $('#newPost')[0].prepend.reset();
+         // give focus back to postContent
+         $('#submitPost').focus();
+       });
+    });
+ 
 
    
   });
@@ -33,7 +49,7 @@ $(document).ready(function(){
     var postCount = 0;
 
     //prevent default refresh
-     $('#new-blog-post').submit(function(e) {
+     $('#newPost').submit(function(e) {
         e.preventDefault();
 
         //grabs the posts value and adds it to the html div posts
@@ -67,9 +83,7 @@ $(document).ready(function(){
         }
 
         commentSubmitHandler();
-
-
-     });
+     
 
 
 });
