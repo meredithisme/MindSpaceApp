@@ -49,8 +49,15 @@ app.get("/api/posts/:id", function (req, res) {
 });
 
 app.delete("/api/posts/:id", function (req, res) {
+	console.log(req.body);
 	db.Post.remove({_id: req.params.id}, function(err, post) {
+		if(err) {
+			console.log('ERROR', err);
+			res.status(500).send('ERROR', err);
+		}
+	console.log('Post deleted: ', post);
 	res.status(200).json(post);
+
 	});
 });
 

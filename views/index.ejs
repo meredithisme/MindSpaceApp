@@ -90,16 +90,18 @@
         <div class="row">
           <div class="col-sm-9 col-sm-offset-1">
             <div class="finalposts">
-              <ul>
+              <ul id="post-list">
                 <% for (var i = contents.length-1; i >= 0; i--) { %>
                     <li id="<%= contents[i]._id %>"><div class='thought'>Thought <%= i+1 %></div> <br> <%= contents[i].contents %>
                       <div class="pull-right">
-                        <button class="btn" id="deletePost"><i class="fa fa-minus-square-o"></i></button>
+                        <button class="btnclose"><i class="fa fa-minus-square-o"></i></button>
                       </div>
                     </li>
               <% } %>
               </ul>
-
+            </div> 
+          </div>
+        </div>
               <!-- Additonal Features to
                <div id="comment">
               </div>

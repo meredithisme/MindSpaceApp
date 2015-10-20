@@ -13,13 +13,17 @@ $(document).ready(function(){
   $('#newPost').on('submit', function(e) {
     e.preventDefault();
       $.post('/api/posts', $('#newPost').serialize(),function(response) {
-        console.log(response);
+        console.log(' the response is ' ,response);
       })
       .done(function(contents) {
          var title = $('li:first').text();
          var number = title[8]+ title[9];
          //prepend title & contents to list
-         $('ul').prepend('<li id=\"'+ contents._id + ' \">' + '<div class="thought">'+ 'Thought ' + (parseInt(number)+1) + "</div> <br>" + contents.contents + "<div class='pull-right'>'<button class='btn' id='deletePost'><i class='fa fa-minus-square-o'></i></button></div>" + '</li>');
+         $('ul').prepend('<li id=\"'+ contents._id + ' \">' + 
+          '<div class="thought">'+ 'Thought ' 
+          + (parseInt(number)+1) 
+          + "</div> <br>" + contents.contents 
+          + "<div class='pull-right'><button class='btnclose' id=\'" + contents._id + "\'><i class='fa fa-minus-square-o'></i></button></div>" + '</li>');
          // clear form contents
          $('#newPost')[0].reset();
          // gives focus back to postContent
@@ -30,19 +34,23 @@ $(document).ready(function(){
 
   // Delete Single Posts Unique Id 
 
-  $(document).on('click', '#deletePost', function(e) {
+  $("#post-list").on('click', '.btnclose', function(e) {
+    console.log('hello?');
     e.preventDefault();
     console.log("delete icon was clicked!");
     var PostId = $(this).closest('li').attr('id');
-    console.log('The post id is ', PostId);
+    // console.log('The post id is ', PostId);
     // post to server
-    $('#PostId').remove();
-
     $.ajax({
       url: "/api/posts/" + PostId,
       type: "DELETE",
-    }).done(function(contents) {
-      $('#' + PostId).remove();
+    }).done(function(response) {
+      console.log('item deleted: ', response);
+      console.log('jquery this: ', $(this));
+      console.log('js this: ', this);
+      // console.log('lets delete this: ', $(this).closest('li'));
+      // $(this).closest('li').remove();
+      // console.log('did we delete it?', $(this).closest('li'));
     });
   });
   // End Delete Post

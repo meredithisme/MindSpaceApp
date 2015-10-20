@@ -148,12 +148,7 @@ button:hover {
 
 }
 
-
-footer {
-  color: #000;
-}
-
-/* ANIMATIONS */
+/* ==== ANIMATIONS ==== */
 
 @-webkit-keyframes fadeIn {
   from {
@@ -163,5 +158,16 @@ footer {
   to {
     opacity: 1;
   }
+}
+
+
+/* ========== MEDIA QUERIES ========== */
+
+
+@media (min-width: 700px) {
+    .title {
+        
+    }
+
 }
 
